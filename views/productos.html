@@ -112,7 +112,9 @@
                     <label for="producto">Nuevo Producto:</label>
                     <input type="text" id="codigoInput" name="codigo" placeholder="Codigo" required>
                     <input type="text" id="productoInput" name="producto" placeholder="Producto" required>
-                    <input type="text" id="categoriaInput" name="categoria_id" placeholder="Categoría" required>
+                    <select id="categoriaSelect" name="categoria_id" placeholder="Categoría" required>
+                        <option value="">Categoria</option>
+                    </select>
                     <input type="number" id="existenciaInput" name="existencia_actual" placeholder="Stock">
                     <input type="number" id="precioInput" name="precio" placeholder="Precio">
                     <button class="btn" id="submitBtn" type="button">Guardar</button>
@@ -134,6 +136,9 @@
                     </tr>
                     </thead>
                     <tbody id="tableBody">
+                        <tr>
+                            <th colspan="7">Sin datos para mostrar</th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -195,10 +200,36 @@
     </div>
 </footer>
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>  
-<script src="js/bootstrap.min.js"></script>  
-<script src="js/active.js"></script>  
+<script src="public/js/bootstrap.min.js"></script>  
+<script src="public/js/active.js"></script>  
 
 <script>
+
+function getCategorias() {
+        $.ajax({
+                url: '/categorias-api',
+                method: 'GET',
+                type: 'get',
+                success: function(data) {
+
+                    if(data.length > 0){
+                        $('#categoriaSelect').empty();
+
+                        data.forEach(function(item) {
+                            $('#categoriaSelect').append(`<option value='${item.id}'>${item.categoria}</option>`);
+                        });
+                    }else{
+                        $('#categoriaSelect').empty();
+
+                        $('#categoriaSelect').append(`<option value=''>Categoria</option>`);
+                        
+                    }
+                },
+                error: function(err) {
+                    console.error('Error fetching data:', err);
+                }
+        });
+    }
     
     function setProductos(id, codigo, producto, categoria_id, existencia_actual, precio) {
                     
@@ -241,6 +272,8 @@
                 method: 'GET',
                 type: 'get',
                 success: function(data) {
+
+                    if(data.length > 0){
                     $('#tableBody').empty();
 
                     data.forEach(function(item) {
@@ -264,7 +297,7 @@
                                 var existencia_actual = row.find('td:eq(4)').text();
                                 var precio = row.find('td:eq(5)').text();
 
-                                row.html(`<td>${id}</td><td><input type="text" value="${codigo}"></td><td><input type="text" value="${producto}"></td><td><input type="text" value="${categoria_id}"></td><td><input type="text" value="${existencia_actual}"></td><td><input type="text" value="${precio}"></td><td><button class="btn saveBtn">Guardar</button></td>`);
+                                row.html(`<td>${id}</td><td><input type="text" value="${codigo}"></td><td><input type="text" value="${producto}"></td><td><input type="number" value="${categoria_id}"></td><td><input type="number" value="${existencia_actual}"></td><td><input type="number" value="${precio}"></td><td><button class="btn saveBtn">Guardar</button></td>`);
                     });
 
                     $('#dataTable').on('click', '.saveBtn', function() {
@@ -280,6 +313,11 @@
 
                                 row.html(`<td>${id}</td><td>${codigo}</td><td>${producto}</td><td>${categoria_id}</td><td>${existencia_actual}</td><td>${precio}</td><td><button class="btn editBtn">Editar</button><button class="btn deleteBtn">Eliminar</button></td>`);
                     });
+
+                    }else{
+                        $('#tableBody').empty();
+                        $('#tableBody').append(`<tr><td colspan='7'>Sin datos para mostrar</td></tr>`);
+                    }
                 },
                 error: function(err) {
                     console.error('Error fetching data:', err);
@@ -289,6 +327,7 @@
 
     $(document).ready(function(){
 
+        getCategorias();
         getProductos();
 
     $('#submitBtn').click(function() {
