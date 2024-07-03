@@ -62,4 +62,4 @@ $(document).ready(function(){
     		tickerSpeed: 5000,
 			tickerHover: true
   		});
-  		});
+});

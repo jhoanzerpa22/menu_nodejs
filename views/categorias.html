@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    
+        .btn {
+            padding: 5px 10px;
+            margin: 5px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <section class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <ul>
+                        <li><a href="#">Cuenta</a></li>
+                        <li><a href="#">Checkout</a></li>
+                        <li><a href="#">Dashbord</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <div class="icon">
+                       <a href="#"><i class="fa fa-facebook"></i></a>
+                       <a href="#"><i class="fa fa-twitter"></i></a>
+                       <a href="#"><i class="fa fa-google-plus"></i></a>
+                       <a href="#"><i class="fa fa-linkedin"></i></a>
+                       <a href="#"><i class="fa fa-wifi"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                   <div class="a-right">
+                        <a href="#"><p><span><i class="fa fa-user"></i></span>Iniciar sesión</p></a>
+                        <a href="#"><p><span><i class="fa fa-pencil"></i></span>Registrarse</p></a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="clear"></div>
+    <section class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                   <div class="logo">
+                    <a href="#"><h2>LOGO</h2></a>
+                   </div>
+                </div>
+                <div class="col-md-7">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">INICIO</a></li>
+                        <li><a href="/productos">PRODUCTOS</a></li>
+                        <li class="active"><a href="/categorias">CATEGORIAS</a></li>
+                        <li><a href="/compras">COMPRAS</a></li>
+                        <li><a href="/favoritos">FAVORITOS</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <div class="cart">
+                        <p><i class="fa fa-cart-arrow-down"></i><sup>0</sup> &#36;&nbsp;&nbsp;0.00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                   <div class="header-part">
+                    <p>INICIO &nbsp;&nbsp;&nbsp;<span><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;CATEGORIAS</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</header><!--
+<section class="slider">
+    <img src="img/slider-about.jpg" alt="Slider">
+    <h3>CATEGORIAS</h3>
+</section>-->
+
+<section class="crud-categorias" style="margin: 100px 0 50px;">
+    <div class="container">
+        <div class="row"> 
+            <div class="col-md-12">
+                <form id="formCategoria">
+                    <label for="categoria">Nueva Categoría:</label>
+                    <input type="text" id="categoriaInput" name="categoria" required>
+                    <button class="btn" id="submitBtn" type="button">Guardar</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table id="dataTable">
+                    <thead>
+                    <tr>
+                        <th width="80px;">ID</th>
+                        <th>Categoría</th>
+                        <th width="200px;">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>INFORMATION</h2>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                </div>
+                <div class="col-md-4 center">
+                    <h2>INFORMATION</h2>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                    <a href="#"><p><i class="fa fa-circle" aria-hidden="true"></i>Best sellers</p></a>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-contact">
+                        <h2>CONTACT US</h2>
+                        <a href="#"><p><i class="fa fa-map-marker" aria-hidden="true"></i>Rangpur , Bangladesh</p></a>
+                        <a href="#"><p><i class="fa fa-phone" aria-hidden="true"></i>+88 01761070282</p></a>
+                        <a href="#"><p><i class="fa fa-envelope" aria-hidden="true"></i>sshahriar458@gmail.com</p></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_bottom">
+       <div class="footer_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="copy_txt">
+                        <p>Copyright © 2014  Designed by <span>shawon</span></p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="footer_logo">
+                        <img src="img/fedex.png">
+                        <img src="img/master-card.png">
+                        <img src="img/paypal.png">
+                        <img src="img/visa.png">
+                        <img src="img/american-express.png">
+                        <img src="img/dhl.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>  
+<script src="public/js/bootstrap.min.js"></script>  
+<script src="public/js/active.js"></script>  
+
+<script>
+    
+    function setCategorias(id, categoria) {
+                    
+        $.ajax({
+            url: '/categorias-api/'+id,
+            method: 'PUT',
+            type: 'put',
+            data: {categoria: categoria},
+            success: function(response) {
+                console.log('Respuesta del servidor:', response);
+                getCategorias();
+            },
+            error: function(err) {
+                console.error('Error en la solicitud:', err);
+            }
+        });
+                
+    }
+    
+    function deleteCategorias(id) {
+                    
+                    $.ajax({
+                        url: '/categorias-api/'+id,
+                        method: 'DELETE',
+                        type: 'delete',
+                        success: function(response) {
+                            console.log('Respuesta del servidor:', response);
+                            getCategorias();
+                        },
+                        error: function(err) {
+                            console.error('Error en la solicitud:', err);
+                        }
+                    });
+                            
+    }
+
+    function getCategorias() {
+        $.ajax({
+                url: '/categorias-api',
+                method: 'GET',
+                type: 'get',
+                success: function(data) {
+                    $('#tableBody').empty();
+
+                    data.forEach(function(item) {
+                        $('#tableBody').append(`<tr><td>${item.id}</td><td>${item.categoria}</td><td>
+                            <button class="btn editBtn">Editar</button>
+                            <button class="btn deleteBtn">Eliminar</button></td></tr>`);
+                    });
+
+                    $('.deleteBtn').click(function() {
+                                var row = $(this).closest('tr');
+                                var id = row.find('td:eq(0)').text();
+                                deleteCategorias(id);
+                    });
+
+                    $('.editBtn').click(function() {
+                                var row = $(this).closest('tr');
+                                var id = row.find('td:eq(0)').text();
+                                var categoria = row.find('td:eq(1)').text();
+
+                                row.html(`<td>${id}</td><td><input type="text" value="${categoria}"></td><td><button class="btn saveBtn">Guardar</button></td>`);
+                    });
+
+                    $('#dataTable').on('click', '.saveBtn', function() {
+                                var row = $(this).closest('tr');
+                                var id = row.find('td:eq(0)').text();
+                                var categoria = row.find('input:eq(0)').val();
+
+                                setCategorias(id,categoria);
+
+                                row.html(`<td>${id}</td><td>${categoria}</td><td><button class="btn editBtn">Editar</button><button class="btn deleteBtn">Eliminar</button></td>`);
+                    });
+                },
+                error: function(err) {
+                    console.error('Error fetching data:', err);
+                }
+        });
+    }
+
+    $(document).ready(function(){
+
+        getCategorias();
+
+    $('#submitBtn').click(function() {
+        var datos = $("#formCategoria").serialize();
+
+        $.ajax({
+            url: '/categorias-api',
+            method: 'POST',
+            type: 'post',
+            data: datos,//{ categoria: $('#categoriaInput').val()},
+            success: function(response) {
+                console.log('Respuesta del servidor:', response);
+                getCategorias();
+            },
+            error: function(err) {
+                console.error('Error en la solicitud:', err);
+            }
+        });
+    });
+
+    });
+</script>
+
+</body>
+</html>
