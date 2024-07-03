@@ -231,13 +231,13 @@ function getCategorias() {
         });
     }
     
-    function setProductos(id, codigo, producto, categoria_id, existencia_actual, precio) {
+    function setProductos(id, codigo, producto, categoria, existencia_actual, precio) {
                     
         $.ajax({
             url: '/productos-api/'+id,
             method: 'PUT',
             type: 'put',
-            data: {producto: producto, codigo: codigo, producto: producto, categoria_id: categoria_id, existencia_actual: existencia_actual, precio: precio},
+            data: {producto: producto, codigo: codigo, producto: producto, existencia_actual: existencia_actual, precio: precio},
             success: function(response) {
                 console.log('Respuesta del servidor:', response);
                 getProductos();
@@ -277,7 +277,7 @@ function getCategorias() {
                     $('#tableBody').empty();
 
                     data.forEach(function(item) {
-                        $('#tableBody').append(`<tr><td>${item.id}</td><td>${item.codigo}</td><td>${item.producto}</td><td>${item.categoria_id}</td><td>${item.existencia_actual}</td><td>${item.precio}</td><td>
+                        $('#tableBody').append(`<tr><td>${item.id}</td><td>${item.codigo}</td><td>${item.producto}</td><td>${item.categoria}</td><td>${item.existencia_actual}</td><td>${item.precio}</td><td>
                             <button class="btn editBtn">Editar</button>
                             <button class="btn deleteBtn">Eliminar</button></td></tr>`);
                     });
@@ -293,11 +293,11 @@ function getCategorias() {
                                 var id = row.find('td:eq(0)').text();
                                 var codigo = row.find('td:eq(1)').text();
                                 var producto = row.find('td:eq(2)').text();
-                                var categoria_id = row.find('td:eq(3)').text();
+                                var categoria = row.find('td:eq(3)').text();
                                 var existencia_actual = row.find('td:eq(4)').text();
                                 var precio = row.find('td:eq(5)').text();
 
-                                row.html(`<td>${id}</td><td><input type="text" value="${codigo}"></td><td><input type="text" value="${producto}"></td><td><input type="number" value="${categoria_id}"></td><td><input type="number" value="${existencia_actual}"></td><td><input type="number" value="${precio}"></td><td><button class="btn saveBtn">Guardar</button></td>`);
+                                row.html(`<td>${id}</td><td><input type="text" value="${codigo}"></td><td><input type="text" value="${producto}"></td><td>${categoria}</td><td><input type="number" value="${existencia_actual}"></td><td><input type="number" value="${precio}"></td><td><button class="btn saveBtn">Guardar</button></td>`);
                     });
 
                     $('#dataTable').on('click', '.saveBtn', function() {
@@ -305,13 +305,13 @@ function getCategorias() {
                                 var id = row.find('td:eq(0)').text();
                                 var codigo = row.find('input:eq(0)').val();
                                 var producto = row.find('input:eq(1)').val();
-                                var categoria_id = row.find('input:eq(2)').val();
-                                var existencia_actual = row.find('input:eq(3)').val();
-                                var precio = row.find('input:eq(4)').val();
+                                var categoria = row.find('td:eq(3)').text();
+                                var existencia_actual = row.find('input:eq(2)').val();
+                                var precio = row.find('input:eq(3)').val();
 
-                                setProductos(id, codigo, producto, categoria_id, existencia_actual, precio);
+                                setProductos(id, codigo, producto, categoria, existencia_actual, precio);
 
-                                row.html(`<td>${id}</td><td>${codigo}</td><td>${producto}</td><td>${categoria_id}</td><td>${existencia_actual}</td><td>${precio}</td><td><button class="btn editBtn">Editar</button><button class="btn deleteBtn">Eliminar</button></td>`);
+                                row.html(`<td>${id}</td><td>${codigo}</td><td>${producto}</td><td>${categoria}</td><td>${existencia_actual}</td><td>${precio}</td><td><button class="btn editBtn">Editar</button><button class="btn deleteBtn">Eliminar</button></td>`);
                     });
 
                     }else{

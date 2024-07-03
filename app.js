@@ -116,7 +116,7 @@ app.delete('/categorias-api/:id', (req, res) => {
 /**PRODUCTOS */
 // Ruta para obtener todos los registros
 app.get('/productos-api', (req, res) => {
-  db.all('SELECT * FROM productos', (err, rows) => {
+  db.all('SELECT productos.*, categorias.categoria FROM productos join categorias on categorias.id = productos.categoria_id', (err, rows) => {
       if (err) {
           res.status(500).json({ error: err.message });
           return;
@@ -152,8 +152,8 @@ app.post('/productos-api', (req, res) => {
 // Ruta para actualizar un registro por ID
 app.put('/productos-api/:id', (req, res) => {
   const id = req.params.id;
-  const { codigo, producto, categoria_id, existencia_actual, precio } = req.body;
-  db.run('UPDATE productos SET codigo = ?, producto = ?, categoria_id = ?, existencia_actual = ?, precio = ? WHERE id = ?', [codigo, producto, categoria_id, existencia_actual, precio, id], function(err) {
+  const { codigo, producto, existencia_actual, precio } = req.body;
+  db.run('UPDATE productos SET codigo = ?, producto = ?, existencia_actual = ?, precio = ? WHERE id = ?', [codigo, producto, existencia_actual, precio, id], function(err) {
       if (err) {
           res.status(500).json({ error: err.message });
           return;
